@@ -1,0 +1,826 @@
+
+		DDL : Data Definition Language
+
+		1. Create : New Database & Table
+		2. Alter : Add Column
+		3. Drop table : Remove on Database
+		4. Truncate Table : Remove on Record
+		5. Rename Table : Rename on Column
+
+		Create database databasename;
+
+		e.g : 
+		
+		create Database Abhitest;
+
+	    drop database databasename;
+
+		Use databasename;
+
+		Use abhitest;
+
+		Syntax : 
+
+				Create table tablename;
+				(
+				 column1 datatype,
+				 column2 datatype,
+				 column3 datatype,
+					....
+				);
+
+	 e.g:
+	
+        create table employes
+	  (
+		id int (10) not null,
+		firstname varchar(255),
+		lastname varchar(255) not null,
+		salary int (10) not null,
+		primary key(id)
+	 );
+
+		describe employes;
+
+		Add on table column :
+
+	Syntax : 
+
+		alter table tablename add column columnname datatype.....
+
+	e.g:
+
+		alter table employes add column contact int;
+
+	Rename on table columnname :
+
+	Syntax :
+
+		alter table tablename rename columnname datatype.....
+
+	e.g:
+
+		alter table employes rename column contact to jobcode;
+
+	Delete Table :
+
+	Syntax : 
+
+		truncate table tablename;
+
+	e.g:
+
+		truncate table employes;
+
+	Drop Table :
+
+	synatx :
+
+		drop table tablename;
+
+	e.g:
+
+		drop table employes
+
+
+	DML : Data Manipulation Language
+
+	1. Insert : Add Record on Table
+	2. Update : Update Record on Table
+	3. Delete : Delete Record on Table
+
+	1. Insert
+   
+   Syntax : 
+          
+		  insert into tablename(column1,column2.column3,......)
+		  values(value1,value2,value3,.......);
+		  
+   E.g:
+          insert into employess(id,firstname,lastname,salary,jobcode)
+          values(1,'Abhishek','Patil',10000,001);		  
+		  
+		  
+	2. Update 
+
+    Syntax :	
+              update tablename
+              set columnname = values
+              where condition;
+
+     e.g : 
+	  
+ 			  update employess
+              set firstname = 'Mahesh'
+              where id=1;
+			  
+	3. Delete :
+
+   Syntax : 
+   
+          Delete from tablename where condition;
+
+   e.g :   
+		  
+		  delete from employess where 
+		  
+	DQL : Data Query Language
+
+  Syntax : 	
+ 
+		Select column1,column2 
+
+		from tablename;
+
+  e.g :
+        
+       select firstname,lastname
+	   
+	   from employess;		
+	
+	Syntax :
+	        
+			Select * from tablename; 
+			
+	e.g :
+
+			select * from employess;
+	
+		  
+	DCL : Data Control Language
+
+	1. Grant : Access on Database
+	2. Revoke : Withdrawa Access on Database
+
+	1.Grant :
+
+   Syntax : 
+		  GRANT privileges_names ON object TO user;
+		  
+	2.Revoke :
+
+  Syntax :		
+		  REVOKE privileges ON object FROM user;		  
+		  
+  Where,
+         privileges_name : These are the access rights or privileges granted/revoked to the user.
+         object : It is the name of the database object to which permissions are being granted/revoked.
+		 user : It is the name of the user to whom the privileges would be granted/revoked.
+
+  Privileges can be of the following values
+  1. Insert
+  2. Select
+  3. Delete
+  4. Index
+  5. Create
+  6. Alter
+  7. Drop
+  8. All
+  9. Update
+  10.Grant
+  
+	TCL : Transaction Control Language
+
+	1. Commit : Save Work Done
+	2. Rollback : Restore Database to Origin State Last Commit
+	3. Savepoint : Identify Transaction point to roll back later
+
+	1. Commit :
+  
+   synatx :
+			Commit;
+			
+   e.g :
+		 delete from employess where id =103;
+		 commit;	
+		 
+	2. Rollback :
+
+   synatx :
+            rollback;
+			
+	e.g :
+          delete from employess where id =103;
+		  rollback;	
+		  
+	3. Savepoint :
+
+   synatx :
+            savepoint;
+			
+			
+	Clause :
+         
+	1. Where : It Used by Specify condition fetching data from single table or multiple table              	
+            Not Used on Select Statement
+			Used on Update & Delete Statement
+
+    Syntax : 
+             Select column1, column2, ... (Select * from tablename where columnname;)
+			 From table_name
+			 Where columnname Operator value;	
+			 
+	e.g :
+		 select * from employess 
+         where salary =10000;
+              
+		 select firstname, lastname
+		 from employess 
+		 where jobcode = 3;
+		 
+		  Operator Using Where 
+		  1. AND 
+		  2. OR 
+		  3. Not
+		 
+   1. AND :
+           
+      Syntax:
+              select * from tablename
+              where column1 and column2;
+		  
+			  select column1,column2,....
+			  from table_name
+			  where condition1 AND condition2......;
+
+     e.g :
+			 select * from employess
+			 where firstname='Abhishek' and salary=10000;
+
+			 select * from employess
+			 where firstname='Abhishek' and lastname='Patil';
+
+			 select * from employess
+			 where id=102 and lastname='Patil';
+			 
+  2. OR :
+
+     Syntax :
+              	 
+	          select * from tablename
+              where column1 or column2;
+			  
+			  select column1,column2,....
+			  from table_name
+			  where condition1 or condition2......;
+			  
+	e.g :
+			  select * from employess
+              where firstname ='Abhishek' or lastname= 'Patil';
+
+			  select * from employess
+			  where firstname ='Abhishek' or jobcode= 3;
+
+			  select * from employess
+			  where jobcode =2 or id= 103;	
+			   
+  Comparision Operator :
+  
+              = is Equal to
+			  > is Greater than
+			  >= is Greater than or equal to
+			  < is Less than
+			  <= is Less than
+			  <> or!= Not Equal to
+		
+    Syntax :
+	          select * from table_name
+			  where condition operator value;
+		
+	e.g : 	
+              select * from employess where salary > 30000;
+
+			  select * from employess where salary >= 30000;
+
+			  select * from employess where salary < 30000;		
+
+			  select * from employess where salary <= 30000;
+			  
+	3. Not :
+
+       Syntax :
+	           select * from table_name
+			   where columnname not condition
+			   
+			   select column1,column2.....
+			   from table_name
+			   where not condition;
+					
+	   e.g :
+             select * from employess where firstname!= 'Abhishek';
+
+			 select * from employess where id!= 102;
+
+			 select * from employess where salary!= 30000;
+
+			 select * from employess where jobcode!= 1;
+			 
+			 
+	Special Operator
+
+            1. Between : Attributes Values within Range
+            2. Like : Attributes Values Matches String Pattern
+            3. Is Null : Attributes Values Null
+			4. In : Attributes Values Matches any Values within Values
+			5. Distinct	: Limits Values to Uniques Values
+	
+	   1. Between :
+	   
+	   Syntax :
+                 	           
+			  select * from table_name
+			  where columnname between value1 AND value2;
+			  
+	   e.g :
+	        
+	         select * from employess
+			 where salary between 10000 AND 30000; 
+			 
+	  2. Like :
+     
+		Syntax :
+		    
+			   select * from table_name
+			   where columnname like value;
+			   
+	    e.g :
+     
+				select * from employess where firstname like 'A%';
+
+				select * from employess where firstname like '%h';
+
+				select * from employess where firstname like '%h%';
+
+	 3. In :
+
+        Syntax :
+
+				Select * from table_name
+				where columnname in (value1,value2)
+				
+	    e.g :
+ 
+				select * from employess where salary in (10000,30000);
+
+				select * from employess where jobcode in (1,3);
+				
+	 4. Distinct :
+
+		Syntax :
+		
+				select distinct (columnname) from table_name;
+				
+		e.g : 
+
+				select Distinct (firstname) from employess;
+
+				select Distinct (lastname) from employess;
+
+				select Distinct (salary) from employess;
+
+				select Distinct (jobcode) from employess;
+				
+		Aggregations Operator	
+
+				1. Avg() : Return Average Values from Specify Column
+				2. Count() : Return Number of Table Rows
+				3. Max() : Large Values Record
+				4. Min() : Small Values Record
+				5. Sum() : Sum Values
+				
+	1. Avg () :
+
+			Syntax :
+					
+					select avg (columnname) from table_name;
+			
+			e.g :
+			
+					select avg(Salary) from employess;
+			
+	2. Count () :
+
+			Syntax :
+			
+					 select count(*) from table_name;
+			
+			e.g :	
+			
+			         select count(*) from employess;
+
+   3. Max () :
+
+			Syntax :
+			
+			        select max(columnname) from table_name;
+			
+			e.g :	
+			
+					select max(salary) from employess;
+
+   4. Min () :
+
+			Syntax :
+			
+					select min(columnname) from table_name;
+			
+			e.g :		
+			
+					select min(salary) from employess;
+
+   5. Sum () :
+
+			Syntax :
+			
+			         select sum(columnname) from table_name;
+					 
+			e.g :			
+			
+                     select sum(salary) from employess; 
+
+       Group By Clause
+	   
+	            Arrange Identical Data into Groups.
+				
+		Syntax :
+
+				select column1,function(column2)
+				from tablename
+				group by column1,column2.....;
+				
+		e.g :
+     
+				select max(salary), department
+				from employess
+				group by department;
+
+				select min(salary), department
+				from employess
+				group by department;
+
+				select id, sum(salary)
+				from employess
+				group by id;
+				
+				select jobcode, sum(salary)
+				from employess
+				group by jobcode;				
+				
+  		Having Clause 
+				
+				It Used aggregate function due to non-performance in the Where Clause
+				Must Follow Group By Clause in Query & Must also precede order by clause is Used
+				
+		Syntax:
+				
+				SELECT column1, function_name(column2)
+
+				FROM table_name
+
+				WHERE condition
+
+				GROUP BY column1, column2
+
+				HAVING condition
+
+				ORDER BY column1, column2;
+				
+		e.g :
+			
+			   select departmentid, avg(salary)
+			   from employess
+			   group by departmentid
+			   having count(departmentid);
+
+			   select departmentid, max(salary)
+			   from employess
+			   group by departmentid
+			   having count(departmentid);
+
+			   select departmentid, min(salary)
+			   from employess
+			   group by departmentid
+			   having count(departmentid);
+
+			   select id, max(salary)
+			   from employess
+			   group by id
+			   having id;
+
+			   select jobcode, avg(salary)
+			   from employess
+			   group by jobcode
+			   having jobcode;
+
+			   select departmentid, avg(salary)
+			   from employess
+			   group by departmentid
+			   having count(departmentid)>=2;
+			   
+	Order By :
+		
+				It is Used to Sort Output of Select Statement
+				Default is to Sort "ASC" (Asscending)
+				Can Sort in Reverse (Descending) Order with "DESC" after the Column name
+				
+		Syntax :
+
+				select * from table_name
+				order by columnname........ ASC/DESC
+				
+				select column1,column2
+				from table_name
+				order by column1,column2...... ASC/DESC
+
+        e.g : 
+		
+				select * from employess
+				order by salary desc;
+
+				select * from employess
+				order by salary asc;
+
+				select * from employess
+				order by id asc;
+
+				select * from employess
+				order by id desc;
+
+				select * from employess
+				order by departmentid desc;
+
+				select * from employess
+				order by departmentid asc;
+
+				select * from employess
+				order by firstname,lastname desc;
+
+				select * from employess
+				order by firstname,lastname asc;
+
+				select * from employess
+				order by firstname asc;
+
+				select * from employess
+				order by firstname desc;
+
+				select * from employess
+				order by firstname asc, salary desc;
+
+				select * from employess
+				order by firstname desc, salary asc;
+				
+	Union Clause :
+
+				It is Used to Combine the Result-set of 2 or more Select Statement removing duplicates
+				Each Select Statement within th Union must have the same number of column
+				The Selected columns must be of similar data types & must be in the Same order in each Select Statement
+				
+		Syntax :
+
+				select columnname from table_name1
+				union
+				select columnname from table_name2;
+				
+	    e.g :
+
+				use abhitest;
+
+				create table product1
+			  (
+				categoryid int,
+				product_name varchar(255)
+			  );
+ 
+				insert into product1 values(1,'ABCD');
+ 
+				insert into product1 values(2,'EFGH');
+
+				insert into product1 values(3,'IJKL');
+ 
+				select * from product1;
+				
+				use abhitest;
+
+				create table prodcut2
+			  (
+				category_id int,
+				product_name varchar(255)
+			  );
+  
+				insert into prodcut2 values
+				(1,'EFGH');
+  
+				insert into prodcut2 values
+				(2,'MNOP');
+    
+				insert into prodcut2 values
+				(3,'ABCD');
+  
+				select * from prodcut2;
+				
+				use abhitest;
+
+				select product_name from product1
+				union 
+				select product_name from prodcut2;
+				
+				select * from product1;
+				
+				select * from product2;
+
+	Union All :
+	
+				It us Used to Combine the Result of 2 Select Statement Including Duplicates Rows.
+				The Same Rules that apply to the Union Clause will apply to the Union All Operator
+				
+		Syntax : 
+		  
+		        select columnname from table_name1
+				union all
+				select columnname from table_name2
+				
+		e.g :
+ 
+				use abhitest;
+
+				select product_name from product1
+				union all
+				select product_name from prodcut2;
+				
+				select * from product1;
+				
+				select * from product2;
+        
+		
+    Joins :
+	
+			Combine rows/Columns from 2 or more table,based on related column between database
+			
+	 e.g : 
+
+			use abhitest;
+
+			create table employess_test
+		  (
+			employee_id  int,
+			firstname varchar(255),
+			lastname varchar(255),
+			salary int,
+			department_id int
+		  );
+  
+			insert into employess_test(employee_id,firstname,lastname,salary,department_id)
+			values (1,'Abhishek','Patil',10000,101);
+  
+			insert into employess_test(employee_id,firstname,lastname,salary,department_id)
+			values (2,'Mahesh','Kadam',25000,102);
+    
+			insert into employess_test(employee_id,firstname,lastname,salary,department_id)
+			values (3,'Sakshi','Baber',75000,103);
+ 
+			insert into employess_test(employee_id,firstname,lastname,salary,department_id)
+			values (4,'Ruturaj','Khot',55000,104);
+  
+			insert into employess_test(employee_id,firstname,lastname,salary,department_id)
+			values (5,'Gauri','Jadhav',82000,105);
+  
+			insert into employess_test(employee_id,firstname,lastname,salary,department_id)
+			values (6,'Nikita','Gailkwad',32000,106);
+  
+			select * from employess_test;
+  
+			use abhitest;
+  
+			create table department_test
+		 (
+			department_id int,
+			departmentname varchar(255),
+			manger_id int,
+			location_id int
+		 );
+  
+			insert into department_test(department_id,departmentname,manger_id,location_id)
+			values (101,'ABCD',111,1000);
+  
+			insert into department_test(department_id,departmentname,manger_id,location_id)
+			values (102,'EFGH',222,2000);
+    
+			insert into department_test(department_id,departmentname,manger_id,location_id)
+			values (103,'IJKL',333,3000);
+ 
+			insert into department_test(department_id,departmentname,manger_id,location_id)
+			values (104,'MNOP',444,4000);
+  
+			insert into department_test(department_id,departmentname,manger_id,location_id)
+			values (105,'QRST',555,5000);
+  
+			insert into department_test(department_id,departmentname,manger_id,location_id)
+			values (106,'UVWX',666,6000);
+  
+			insert into department_test(department_id,departmentname,manger_id,location_id)
+			values (107,'YZAA',777,7000);
+  
+			select * from employess_test;
+			select * from department_test;
+
+	Types
+			1. Inner Joins
+			2. Left Joins
+			3. Right Joins
+			4. Full Joins
+			
+	1. Inner Joins :
+					
+					Return rows when there is a match in both table.
+					
+					A new Result by Combining column value of two Tables (table1 and table2) based upon the join-predicate.
+					
+					The Query Compares each row of table1 with each of table2 to find all pairs of rows which satisfy the join-predicate.
+					
+			Syntax :
+			
+					Select table1.column1,table1.column2, table2.column1,table2.column2.......
+					from table1
+					inner join table2
+					On table1.common filed = table2.common filed;
+					
+		    e.g :
+			
+			       select employess_test.employee_id, employess_test.firstname, employess_test.lastname, employess_test.salary, department_test.department_id, department_test.departmentname
+				   from employess_test
+				   inner join department_test
+				   on employess_test.department_id = department_test.department_id;
+				   	
+	2. Left Joins :
+					Return all rows from the left table, even if there are no matches in the right table.
+					
+					The Left Join returns all the value from the left table, plus matched values from the right table or NULL in case of no matching join Predicate
+					
+		   Syntax :
+			
+					Select table1.column1,table1.column2, table2.column1,table2.column2.......
+					from table1
+					left join table2
+					On table1.common filed = table2.common filed;	
+					
+			e.g :
+
+					  select employess_test.employee_id, employess_test.firstname, employess_test.lastname, employess_test.salary, department_test.department_id, department_test.departmentname
+					  from employess_test
+					  left join department_test
+					  on employess_test.department_id = department_test.department_id;				
+		
+    3. Right Joins :
+					Return all rows from the right table, even if there are no matches in the left table.
+					
+					The Right Join returns all the values from the right table, plus matched values from the left table or NULL in case of no matching join Predicate
+
+           Syntax : 
+		   
+                    Select table1.column1,table1.column2, table2.column1,table2.column2.......
+					from table1
+					right join table2
+					On table1.common filed = table2.common filed;             
+
+             e.g : 		
+
+					select employess_test.employee_id, employess_test.firstname, employess_test.lastname, employess_test.salary, department_test.department_id, department_test.departmentname
+					from employess_test
+					right join department_test
+					on employess_test.department_id = department_test.department_id;
+				 
+    4. Full Joins :
+					Combine by Left Joins & Right Joins
+					
+					The Full Join Combines the Result of both Left & Right Joins
+					
+					The Joined table will contain records from both the tables & fill in NULLs for missing  matches on either Side
+					
+			Syntax :
+
+					Select table1.column1,table1.column2, table2.column1,table2.column2.......
+					from table1
+					left join table2
+					On table1.common filed = table2.common filed
+					union
+					Select table1.column1,table1.column2, table2.column1,table2.column2.......
+					from table1
+					right join table2
+					On table1.common filed = table2.common filed;      
+					
+			  e.g :
+
+					select employess_test.employee_id, employess_test.firstname, employess_test.lastname, employess_test.salary, department_test.department_id, department_test.departmentname
+					from employess_test
+					left join department_test
+					on employess_test.department_id = department_test.department_id
+					union
+					select employess_test.employee_id, employess_test.firstname, employess_test.lastname, employess_test.salary, department_test.department_id, department_test.departmentname
+					from employess_test
+					right join department_test
+					on employess_test.department_id = department_test.department_id;
+					
+
+			
+               		
